@@ -104,7 +104,7 @@
             } else {
                 document.getElementById("hid").value = msg.uuid;
                 document.getElementById("txt").innerText = msg.txt;
-                document.getElementById("expire").innerText = (msg.expire / 60) + "分钟后过期";
+                document.getElementById("expire").innerText = Math.round(msg.expire / 60) + "分钟后过期";
                 document.getElementById("msg").style.display="block";
             }
         }
