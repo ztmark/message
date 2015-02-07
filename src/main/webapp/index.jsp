@@ -6,14 +6,12 @@
     <meta charset="UTF-8">
     <title></title>
     <link type="text/css" href="resource/css/main.css" rel="stylesheet" />
-
 </head>
 <body>
 <header>
     创建一条几分钟后失效的信息
 </header>
 <div id="main">
-    <%--<form action="" method="post">--%>
         <textarea id="text"  name="text" placeholder="输入内容..." ></textarea>
         <input id="radio1" type="radio" name="duration" value="15" checked/>
         <label for="radio1" class="duration">15分钟</label>
@@ -22,7 +20,6 @@
         <input id="radio3" type="radio" name="duration" value="1440"/>
         <label for="radio3" class="duration">1天</label>
         <input id="submit" class="create" type="submit" value="Create" />
-    <%--</form>--%>
 
     <h3>Links</h3>
     <div id="link">
@@ -38,9 +35,24 @@
         var httpRequest;
         document.getElementById("submit").onclick = makePost;
         function makePost() {
+
+            var text = document.getElementById("text").value;
+            if (text === undefined || text.trim() === null || text.trim() === "") {
+                var err = document.createElement("div");
+                err.setAttribute("class","error");
+                err.setAttribute("id","err");
+                err.innerText = "请填写内容后在创建。";
+                document.getElementById("main").insertBefore(err, document.getElementById("text"));
+
+                return;
+            }
+            var err = document.getElementById("err");
+            if (err !== undefined && err !== null) {
+                document.getElementById("err").style.display="none";
+            }
             if (window.XMLHttpRequest) {
                 httpRequest = new XMLHttpRequest();
-            } else if (window.ActiveXObejct) {
+            } else if (window.ActiveXObject) {
                 try {
                     httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
                 } catch (e) {
@@ -51,7 +63,7 @@
             }
             httpRequest.onreadystatechange = addLink;
 
-            var text = document.getElementById("text").value;
+
             var duration;
             var radios = document.getElementsByName("duration");
             for (var i=0; i<radios.length; i++) {
@@ -75,8 +87,8 @@
                     var sp = document.createElement("span");
                     var ad = document.createElement("a");
                     var dx = document.createElement("div");
-                    al.setAttribute("href",msg.uuid);
-                    al.innerText = "${pageContext.request.contextPath}/" + msg.uuid;
+                    al.setAttribute("href","show?id="+msg.uuid);
+                    al.innerText = "${pageContext.request.contextPath}/show?id=" + msg.uuid;
                     sp.setAttribute("class","pwd");
                     sp.innerText = "密码：" + msg.password;
                     ad.setAttribute("class","delete");
@@ -84,7 +96,7 @@
                     ad.innerText = "delete";
                     dx.setAttribute("class","expire");
                     var expire = Math.round(msg.expire) / 60;
-                    dx.innerText = expire + "分钟后过期"
+                    dx.innerText = expire + "分钟后过期";
                     l.appendChild(al);
                     l.appendChild(sp);
                     l.appendChild(ad);
@@ -106,7 +118,7 @@
         var p = t.parentNode;
         var gp = p.parentNode;
 
-        var uuid = p.firstChild.href;
+        var uuid = p.firstChild.href.split("=")[1];
 
         var httpRequest;
         if (window.XMLHttpRequest) {
@@ -125,7 +137,7 @@
             gp.removeChild(p);
         }
 
-        httpRequest.open("POST","delete?uuid="+encodeURIComponent(uuid));
+        httpRequest.open("POST","delete?id="+encodeURIComponent(uuid));
         httpRequest.send(null);
     }
 

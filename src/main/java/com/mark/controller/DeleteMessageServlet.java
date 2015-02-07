@@ -20,8 +20,8 @@ public class DeleteMessageServlet extends HttpServlet {
     private MessageService service = new MessageService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String[] url = request.getParameter("uuid").split("/");
-        service.delete(url[url.length-1]);
+        String id = request.getParameter("id");
+        service.delete(id);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

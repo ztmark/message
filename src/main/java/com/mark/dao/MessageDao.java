@@ -26,7 +26,7 @@ public class MessageDao {
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1,message.getUuid());
         ps.setString(2,message.getText());
-        ps.setInt(3, (int) (message.getExpire() + System.currentTimeMillis()));
+        ps.setInt(3, (int) (message.getExpire() + System.currentTimeMillis()/1000L));
         ps.setString(4,encodePwd(message.getPassword()));
         ps.execute();
         util.release(conn,ps,null);

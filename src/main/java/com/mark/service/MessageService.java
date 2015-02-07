@@ -43,8 +43,12 @@ public class MessageService {
         return sb.toString();
     }
 
-    public Message select(String uuid, String password) throws SQLException {
-        return dao.select(uuid, password);
+    public Message select(String uuid, String password) {
+        try {
+            return dao.select(uuid, password);
+        } catch (SQLException e) {
+            return null;
+        }
     }
 
     public void delete(String uuid) {

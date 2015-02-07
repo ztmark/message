@@ -17,7 +17,7 @@ import java.io.PrintWriter;
  * Time  : 19:41
  */
 @WebServlet(name = "MessageServlet")
-public class MessageServlet extends HttpServlet {
+public class AddMessageServlet extends HttpServlet {
 
     private MessageService service = new MessageService();
 
@@ -36,7 +36,6 @@ public class MessageServlet extends HttpServlet {
                     .append("\"password\":\"").append(message.getPassword()).append("\",")
                     .append("\"expire\":").append(message.getExpire()).append("}");
             out.write(sb.toString());
-            //request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
 

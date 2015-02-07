@@ -7,12 +7,12 @@
     <display-name>Archetype Created Web Application</display-name>
 
     <servlet>
-        <servlet-name>MessageServlet</servlet-name>
-        <servlet-class>com.mark.controller.MessageServlet</servlet-class>
+        <servlet-name>AddMessageServlet</servlet-name>
+        <servlet-class>com.mark.controller.AddMessageServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>MessageServlet</servlet-name>
+        <servlet-name>AddMessageServlet</servlet-name>
         <url-pattern>/add</url-pattern>
     </servlet-mapping>
 
@@ -26,6 +26,15 @@
         <url-pattern>/delete</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ShowMessageServlet</servlet-name>
+        <servlet-class>com.mark.controller.ShowMessageServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ShowMessageServlet</servlet-name>
+        <url-pattern>/show</url-pattern>
+    </servlet-mapping>
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
