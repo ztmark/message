@@ -43,7 +43,7 @@
         <div id="verify">
             <label for="password">请输入密码</label>
             <input id="password" type="password" name="password" />
-            <a id="submit" href="#" class="show">查看</a>
+            <a id="submit" href="javascript:void(0)" class="show">查看</a>
         </div>
         <div id="msg">
             <input type="hidden" id="hid" />
@@ -88,7 +88,7 @@
 
 
             var data = "&password="+ encodeURIComponent(pwd.trim());
-            console.log(data);
+            //console.log(data);
             httpRequest.open("POST",window.location.href+data);
             httpRequest.send(null);
         }
