@@ -88,6 +88,7 @@
                     var ad = document.createElement("a");
                     var dx = document.createElement("div");
                     al.setAttribute("href","show?id="+msg.uuid);
+                    al.setAttribute("target","blank");
                     al.innerText = "${pageContext.request.contextPath}/show?id=" + msg.uuid;
                     sp.setAttribute("class","pwd");
                     sp.innerText = "密码：" + msg.password;
