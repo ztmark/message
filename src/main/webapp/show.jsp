@@ -136,6 +136,7 @@
             err.innerText = "该信息已删除。3秒后跳转到首页。";
             document.getElementById("main").appendChild(err);
             setTimeout("window.location.href='http://smessage.coding.io'",3000);
+            //setTimeout("window.location.href='${pageContext.request.contextPath}/'",3000);
         }
 
         httpRequest.open("POST","delete?id="+encodeURIComponent(uuid));
