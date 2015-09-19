@@ -1,2 +1,3 @@
 # message
-[secret message](http://smessage.coding.io/)
+
+用Java开发的定时销毁 的消息应用。分享信息链接,输入密码可以查看信息,定时销毁信息。
